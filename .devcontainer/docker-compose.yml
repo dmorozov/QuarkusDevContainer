@@ -1,0 +1,44 @@
+services:
+  quarkus-demo-app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    environment:
+      # NOTE: POSTGRES_DB/USER/PASSWORD should match values in db container
+      POSTGRES_PASSWORD: demo
+      POSTGRES_USER: demo
+      POSTGRES_DB: DemoDB
+      POSTGRES_HOST: quarkus-demo-db
+      POSTGRES_PORT: 5432
+    volumes:
+      - ..:/workspaces:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+      - quarkus-maven-cache:/home/vscode/.m2
+      - quarkus-gradle-cache:/home/vscode/.gradle
+    command: sleep infinity
+    depends_on:
+      quarkus-demo-db:
+        condition: service_healthy
+
+  quarkus-demo-db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo
+      POSTGRES_DB: DemoDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U demo -d DemoDB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  quarkus-maven-cache:
+  quarkus-gradle-cache:
+  postgres-data:
