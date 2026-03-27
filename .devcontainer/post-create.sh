@@ -9,7 +9,7 @@ sudo chown -R "$(id -u):$(id -g)" "${HOME}/.m2" "${HOME}/.gradle" 2>/dev/null ||
 # -------------------------------------------------------
 # 1. Install SDKMAN
 # -------------------------------------------------------
-echo "[1/4] Installing SDKMAN..."
+echo "[1/3] Installing SDKMAN..."
 export SDKMAN_DIR="${HOME}/.sdkman"
 if [ -d "${SDKMAN_DIR}" ] && [ ! -f "${SDKMAN_DIR}/bin/sdkman-init.sh" ]; then
     rm -rf "${SDKMAN_DIR}"
@@ -20,14 +20,9 @@ source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 set -eu
 
 # -------------------------------------------------------
-# 2. Install Maven + Quarkus CLI via SDKMAN
+# 2. Install Quarkus CLI via SDKMAN
 # -------------------------------------------------------
-echo "[2/4] Installing Maven..."
-set +eu
-sdk install maven 2>&1 | grep -E "^(Installing|Done|Setting)" || true
-set -eu
-
-echo "[3/4] Installing Quarkus CLI 3.34.1..."
+echo "[2/3] Installing Quarkus CLI 3.34.1..."
 set +eu
 sdk install quarkus 3.34.1 2>&1 | grep -E "^(Installing|Done|Setting)" || true
 set -eu
@@ -35,7 +30,7 @@ set -eu
 # -------------------------------------------------------
 # 3. Install Claude Code CLI
 # -------------------------------------------------------
-echo "[4/4] Installing Claude Code CLI..."
+echo "[3/3] Installing Claude Code CLI..."
 curl -fsSL https://claude.ai/install.sh | bash > /dev/null 2>&1 || true
 export PATH="${HOME}/.claude/bin:${PATH}"
 

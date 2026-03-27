@@ -62,7 +62,7 @@ RUN cp /usr/share/oh-my-zsh/templates/zshrc.zsh-template /home/vscode/.zshrc \
     echo ''; \
     echo '# Java / Dev environment'; \
     echo 'export JAVA_HOME=/opt/java/openjdk'; \
-    echo 'export PATH="${HOME}/.claude/bin:${HOME}/.sdkman/candidates/maven/current/bin:${HOME}/.sdkman/candidates/quarkus/current/bin:${PATH}"'; \
+    echo 'export PATH="${HOME}/.claude/bin:${HOME}/.sdkman/candidates/quarkus/current/bin:${PATH}"'; \
     echo '[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ] && source "${HOME}/.sdkman/bin/sdkman-init.sh"'; \
     } >> /home/vscode/.zshrc \
     && chown vscode:vscode /home/vscode/.zshrc

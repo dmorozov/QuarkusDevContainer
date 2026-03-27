@@ -16,13 +16,19 @@
         "redhat.java",
         "vscjava.vscode-java-debug",
         "vscjava.vscode-java-test",
-        "vscjava.vscode-maven",
+        "vscjava.vscode-gradle",
         "redhat.vscode-xml",
         "redhat.vscode-yaml",
         "redhat.vscode-microprofile",
         "ms-azuretools.vscode-docker",
         "humao.rest-client",
-        "anthropic.claude-code"
+        "anthropic.claude-code",
+        //"shengchen.vscode-checkstyle",
+        //"cracrayol.pmd-java",
+        "github.vscode-pull-request-github",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph",
+        "streetsidesoftware.code-spell-checker"
       ],
       "settings": {
         "java.jdt.ls.java.home": "/opt/java/openjdk",
