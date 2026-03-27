@@ -106,3 +106,49 @@ Configure in the project (already done)
 
 claude mcp add --transport http context7 https://mcp.context7.com/mcp \
   --header "CONTEXT7_API_KEY: YOUR_KEY"
+
+
+
+
+
+TODO:
+Implementation Summary
+
+  All source code written and compiled successfully. Here's the final status:
+
+  ┌────────────────────────────────────┬──────────────────────┬──────────────────────────────┐
+  │               Phase                │        Tasks         │            Status            │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 1: Setup                     │ T001-T007 (7 tasks)  │ ✅ Complete                  │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 2: Foundational              │ T008-T019 (12 tasks) │ ✅ Complete                  │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 3: US1 — REST API            │ T020-T025 (6 tasks)  │ ✅ Complete                  │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 4: US2 — Generation Consumer │ T026-T027 (2 tasks)  │ ✅ Complete                  │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 5: US3 — Dispatch Consumer   │ T028-T029 (2 tasks)  │ ✅ Complete                  │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 6: US4 — E2E Verification    │ T030 (1 task)        │ ⏳ Requires running services │
+  ├────────────────────────────────────┼──────────────────────┼──────────────────────────────┤
+  │ Phase 7: Polish                    │ T031-T034 (4 tasks)  │ ⏳ Requires running services │
+  └────────────────────────────────────┴──────────────────────┴──────────────────────────────┘
+
+  29/34 tasks complete — all code tasks done. The remaining 5 tasks (T030-T034) are runtime verification tasks that require the devcontainer to be rebuilt
+  with RabbitMQ.
+
+  Files created/modified:
+  - .devcontainer/docker-compose.yml — Added RabbitMQ service
+  - .devcontainer/devcontainer.json — Added forwarded ports
+  - .devcontainer/init.sql — Added DOCUMENT_SEQ sequence
+  - .gitignore — Added build/ pattern
+  - bric-core-domain/ — 9 Java files (3 enums, 2 entities, 1 converter, 2 DTOs) + build files
+  - bric-documents/ — 5 Java files (1 DTO, 2 validation, 1 service, 1 resource) + config
+  - bric-documents-generate/ — 1 Java file (consumer) + config
+  - bric-documents-dispatch/ — 1 Java file (consumer) + config
+
+  Note during implementation: Added quarkus-config-yaml dependency to all three services — required for YAML configuration support in Quarkus (not included
+  by default). Fixed Mutiny reactive chain pattern in consumers (ifNull().invoke() → null check in transformToUni()).
+
+  Next steps: Rebuild the devcontainer to get RabbitMQ, then run T030-T034 for E2E verification.
+  

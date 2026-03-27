@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.bric'
+version = '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Quarkus BOM for version management
+    implementation platform('io.quarkus.platform:quarkus-bom:3.34.1')
+
+    // Hibernate Reactive Panache (for entity base classes)
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
+
+    // Bean Validation API
+    implementation 'jakarta.validation:jakarta.validation-api'
+
+    // JAXB for XML serialization of DocumentMetadata
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api'
+    implementation 'org.glassfish.jaxb:jaxb-runtime'
+
+    // JPA API (for annotations)
+    implementation 'jakarta.persistence:jakarta.persistence-api'
+}

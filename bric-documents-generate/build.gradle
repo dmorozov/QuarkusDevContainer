@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+group = 'com.bric'
+version = '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation platform('io.quarkus.platform:quarkus-bom:3.34.1')
+
+    // Core domain (composite build)
+    implementation 'com.bric:bric-core-domain:1.0.0-SNAPSHOT'
+
+    // YAML configuration support
+    implementation 'io.quarkus:quarkus-config-yaml'
+
+    // Quarkus REST (reactive) — needed for Quarkus app bootstrap
+    implementation 'io.quarkus:quarkus-rest'
+
+    // Hibernate Reactive Panache + PostgreSQL
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
+    implementation 'io.quarkus:quarkus-reactive-pg-client'
+
+    // RabbitMQ Reactive Messaging
+    implementation 'io.quarkus:quarkus-messaging-rabbitmq'
+
+    // Testing
+    testImplementation 'io.quarkus:quarkus-junit5'
+}

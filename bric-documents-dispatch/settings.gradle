@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id 'io.quarkus' version '3.34.1'
+    }
+}
+
+rootProject.name = 'bric-documents-dispatch'
+
+includeBuild('../bric-core-domain') {
+    dependencySubstitution {
+        substitute module('com.bric:bric-core-domain') using project(':')
+    }
+}

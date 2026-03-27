@@ -11,6 +11,15 @@ services:
       POSTGRES_DB: DemoDB
       POSTGRES_HOST: quarkus-demo-db
       POSTGRES_PORT: 5432
+      DB_HOST: quarkus-demo-db
+      DB_PORT: 5432
+      DB_NAME: DemoDB
+      DB_USER: demo
+      DB_PASSWORD: demo
+      RABBITMQ_HOST: quarkus-demo-rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
     volumes:
       - ..:/workspaces:cached
       - ~/.ssh:/home/vscode/.ssh
@@ -18,6 +27,8 @@ services:
     command: sleep infinity
     depends_on:
       quarkus-demo-db:
+        condition: service_healthy
+      quarkus-demo-rabbitmq:
         condition: service_healthy
 
   quarkus-demo-db:
@@ -34,6 +45,21 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U demo -d DemoDB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  quarkus-demo-rabbitmq:
+    image: rabbitmq:4-management-alpine
+    restart: unless-stopped
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 5s
       timeout: 5s
       retries: 5

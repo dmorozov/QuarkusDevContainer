@@ -75,9 +75,13 @@
   },
   "forwardPorts": [
     8080,
+    8081,
+    8082,
     8443,
     5005,
     5432,
+    5673,
+    15673,
     9090
   ],
   "portsAttributes": {
@@ -96,6 +100,22 @@
     "5432": {
       "label": "PostgreSQL",
       "onAutoForward": "silent"
+    },
+    "8081": {
+      "label": "Quarkus Generate",
+      "onAutoForward": "notify"
+    },
+    "8082": {
+      "label": "Quarkus Dispatch",
+      "onAutoForward": "notify"
+    },
+    "5673": {
+      "label": "RabbitMQ AMQP",
+      "onAutoForward": "silent"
+    },
+    "15673": {
+      "label": "RabbitMQ Management",
+      "onAutoForward": "notify"
     },
     "9090": {
       "label": "Quarkus Management",

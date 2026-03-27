@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn:*)",
+      "Bash(ls:*)",
+      "Bash(jar tf:*)",
+      "Bash(java:*)",
+      "Bash(grep -E \"\\\\.java$|\\\\.yml$|\\\\.properties$|src/\")",
+      "Bash(git ls-tree:*)",
+      "Bash(grep -E \"\\\\.\\(java|yml|properties|xml\\)$\")",
+      "Bash(docker-compose up:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(git commit:*)",
+      "Bash(apk add:*)",
+      "Bash(jbang --version)",
+      "Bash(jbang quarkus-agent-mcp@quarkusio --help)",
+      "WebSearch",
+      "WebFetch(domain:docs.quarkiverse.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:quarkus-mcp.github.io)",
+      "WebFetch(domain:quarkus.io)",
+      "WebFetch(domain:mcpmarket.com)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "chrome-devtools",
+    "context7",
+    "postgres",
+    "quarkus-agent"
+  ]
+}

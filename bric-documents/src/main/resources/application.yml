@@ -1,0 +1,41 @@
+quarkus:
+  http:
+    port: 8080
+
+  # Index bric-core-domain for entity discovery in composite builds
+  index-dependency:
+    bric-core-domain:
+      group-id: com.bric
+      artifact-id: bric-core-domain
+
+  # Hibernate Reactive
+  datasource:
+    db-kind: postgresql
+    reactive:
+      url: vertx-reactive:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:DemoDB}
+    username: ${DB_USER:demo}
+    password: ${DB_PASSWORD:demo}
+
+  hibernate-orm:
+    database:
+      generation: update
+    log:
+      sql: true
+
+  # RabbitMQ connection
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+# SmallRye Reactive Messaging channels
+mp:
+  messaging:
+    outgoing:
+      document-request-out:
+        connector: smallrye-rabbitmq
+        exchange:
+          name: DOCUMENT_REQUEST
+        queue:
+          name: DOCUMENT_REQUEST

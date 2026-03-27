@@ -1,0 +1,37 @@
+quarkus:
+  http:
+    port: 8082
+
+  index-dependency:
+    bric-core-domain:
+      group-id: com.bric
+      artifact-id: bric-core-domain
+
+  datasource:
+    db-kind: postgresql
+    reactive:
+      url: vertx-reactive:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:DemoDB}
+    username: ${DB_USER:demo}
+    password: ${DB_PASSWORD:demo}
+
+  hibernate-orm:
+    database:
+      generation: validate
+    log:
+      sql: true
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+mp:
+  messaging:
+    incoming:
+      document-send-request-in:
+        connector: smallrye-rabbitmq
+        queue:
+          name: DOCUMENT_SEND_REQUEST
+        exchange:
+          name: DOCUMENT_SEND_REQUEST
