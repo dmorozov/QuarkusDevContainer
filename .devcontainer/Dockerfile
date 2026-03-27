@@ -57,7 +57,7 @@ RUN { \
 # Configure Oh My Zsh for vscode user
 RUN cp /usr/share/oh-my-zsh/templates/zshrc.zsh-template /home/vscode/.zshrc \
     && sed -i 's|^export ZSH=.*|export ZSH="/usr/share/oh-my-zsh"|' /home/vscode/.zshrc \
-    && sed -i 's|^ZSH_THEME=.*|ZSH_THEME="devcontainers"|' /home/vscode/.zshrc \
+    && sed -i 's|^ZSH_THEME=.*|ZSH_THEME="bira"|' /home/vscode/.zshrc \
     && { \
     echo ''; \
     echo '# Java / Dev environment'; \
