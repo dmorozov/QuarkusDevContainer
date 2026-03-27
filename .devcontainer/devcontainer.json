@@ -1,37 +1,13 @@
 {
   "name": "Quarkus Dev Environment",
-
   "dockerComposeFile": "docker-compose.yml",
   "service": "quarkus-demo-app",
   "workspaceFolder": "/workspaces",
-
-  "remoteUser": "vscode",
-
-  "remoteEnv": {
-    "TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE": "/var/run/docker.sock",
-    "TESTCONTAINERS_HOST_OVERRIDE": "host.docker.internal",
-    "QUARKUS_DATASOURCE_JDBC_URL": "jdbc:postgresql://quarkus-demo-db:5432/DemoDB",
-    "QUARKUS_DATASOURCE_USERNAME": "demo",
-    "QUARKUS_DATASOURCE_PASSWORD": "demo"
-  },
-
-  "forwardPorts": [8080, 8443, 5005, 5432, 9090],
-  "portsAttributes": {
-    "8080": { "label": "Quarkus HTTP", "onAutoForward": "notify" },
-    "8443": { "label": "Quarkus HTTPS", "onAutoForward": "silent" },
-    "5005": { "label": "Java Debug", "onAutoForward": "silent" },
-    "5432": { "label": "PostgreSQL", "onAutoForward": "silent" },
-    "9090": { "label": "Quarkus Management", "onAutoForward": "silent" }
-  },
-
-  "postCreateCommand": "bash .devcontainer/post-create.sh",
-
   "hostRequirements": {
     "cpus": 4,
     "memory": "8gb",
     "storage": "32gb"
   },
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -90,5 +66,42 @@
         }
       }
     }
-  }
+  },
+  "forwardPorts": [
+    8080,
+    8443,
+    5005,
+    5432,
+    9090
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "Quarkus HTTP",
+      "onAutoForward": "notify"
+    },
+    "8443": {
+      "label": "Quarkus HTTPS",
+      "onAutoForward": "silent"
+    },
+    "5005": {
+      "label": "Java Debug",
+      "onAutoForward": "silent"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    },
+    "9090": {
+      "label": "Quarkus Management",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}/.m2,target=/home/vscode/.m2,type=bind"
+  ],
+  "remoteUser": "vscode"
 }
