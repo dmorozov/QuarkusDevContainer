@@ -103,7 +103,7 @@ build, and deploy on separate timelines without coupling.
 
 | Component          | Requirement                              |
 |--------------------|------------------------------------------|
-| Language           | Java 21                                  |
+| Language           | Java 25                                  |
 | Framework          | Quarkus 3.17+                            |
 | Build tool         | Gradle (Groovy DSL), standalone projects |
 | Database           | PostgreSQL 18, shared instance           |
@@ -132,4 +132,4 @@ project evolves.
   removals/redefinitions, MINOR for additions/expansions,
   PATCH for clarifications.
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-27 | **Last Amended**: 2026-03-27
+**Version**: 1.0.1 | **Ratified**: 2026-03-27 | **Last Amended**: 2026-03-27
