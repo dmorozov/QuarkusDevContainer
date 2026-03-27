@@ -17,6 +17,7 @@ RUN apk add --no-cache \
     g++ \
     musl-dev \
     zlib-dev \
+    make \
     jq \
     procps \
     findutils \
@@ -28,7 +29,10 @@ RUN apk add --no-cache \
     zip \
     docker-cli \
     docker-cli-compose \
-    github-cli
+    github-cli \
+    nodejs \
+    npm \
+    chromium
 
 # Create non-root user with sudo + docker access
 # Use dynamic GID/UID to avoid conflicts with base image groups
@@ -71,6 +75,7 @@ RUN cp /usr/share/oh-my-zsh/templates/zshrc.zsh-template /home/vscode/.zshrc \
 ENV JAVA_HOME=/opt/java/openjdk
 ENV MAVEN_OPTS="-Xmx2g -XX:+UseG1GC"
 ENV GRADLE_OPTS="-Xmx2g -Dorg.gradle.daemon=true"
+ENV PATH="$PATH:/home/vscode/.local/bin"
 
 USER vscode
 WORKDIR /workspaces
