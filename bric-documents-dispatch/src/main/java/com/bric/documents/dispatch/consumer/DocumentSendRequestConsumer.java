@@ -45,8 +45,7 @@ public class DocumentSendRequestConsumer {
                             return document.persist().replaceWithVoid();
                         })
         ).onFailure().recoverWithUni(throwable -> {
-            LOG.errorf(throwable, "Failed to process DOCUMENT_SEND_REQUEST for documentId=%d",
-                    message.getDocumentId());
+            LOG.errorf(throwable, "Failed to process DOCUMENT_SEND_REQUEST for documentId=%d", message.getDocumentId());
             // FR-007: Set status to FAILED on any exception
             return Panache.withTransaction(() ->
                     Document.<Document>findById(message.getDocumentId())
